@@ -2,7 +2,7 @@ import { useTerminal } from "@/components/terminal/provider";
 import { ChangeEvent, KeyboardEvent, useEffect, useRef, useState } from "react";
 
 export const useInputUX = () => {
-  const { messages, addMessage, setLoading } = useTerminal();
+  const { messages, addMessage, setMessages } = useTerminal();
 
   const [isFocused, setIsFocused] = useState(false);
 
@@ -40,10 +40,14 @@ export const useInputUX = () => {
       message.style.height = "auto";
     }
 
-    // Add user message
-    addMessage(message, "user");
+    if (message.trim() === "clear") {
+      setMessages([]);
+    } else {
+      // Add user message
+      addMessage(message, "user");
+    }
+
     setMessage("");
-    alert("sent");
   };
 
   //====================EFFECTS====================
@@ -85,6 +89,7 @@ export const useInputUX = () => {
       isDisabled,
       bottomRef,
       isFocused,
+      messages,
     },
     actions: {
       handleChange,

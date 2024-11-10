@@ -8,12 +8,12 @@ import { User } from "./user";
 
 export function UserInput({ className }: { className?: string }) {
   const {
-    states: { message, textareaRef, isFocused },
+    states: { message, textareaRef, isFocused, messages },
     actions: { handleKeyDown, handleChange },
   } = useInputUX();
 
   return (
-    <div className={cn("relative w-full h-full", className)}>
+    <div className={cn("relative w-full", className)}>
       <Textarea
         value={message}
         rows={1}
@@ -27,7 +27,7 @@ export function UserInput({ className }: { className?: string }) {
       <User className="absolute left-0 top-0" />
 
       {/* Typewriter Effect for Placeholder */}
-      {message.trim() === "" && !isFocused && (
+      {message.trim() === "" && !isFocused && !messages.length && (
         <span className="pointer-events-none flex space-x-1 font-mono absolute indent-44 left-0 top-0 text-neutral-500 w-full whitespace-pre-line">
           <Typewriter
             options={{

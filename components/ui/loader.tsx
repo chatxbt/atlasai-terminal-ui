@@ -1,9 +1,11 @@
 "use client";
 import { motion } from "framer-motion";
 
-export const Loader = () => {
+import { cn } from "@/lib/utils";
+
+export const Loader = ({ className }: { className?: string }) => {
   return (
-    <div className="w-fit flex items-center justify-center">
+    <div className={cn("w-fit flex items-center justify-center", className)}>
       [
       {[...new Array(4)].map((_, i) => (
         <motion.span

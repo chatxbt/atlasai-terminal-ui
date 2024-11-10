@@ -1,18 +1,26 @@
 "use client";
 
-import { createContext, useContext, useState, ReactNode } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  ReactNode,
+  Dispatch,
+  SetStateAction,
+} from "react";
 
 type Message = {
   id: string;
   message: string;
   type: "system" | "user";
-  loading?: boolean;
 };
 
 interface TerminalContextType {
   messages: Message[];
+  setMessages: Dispatch<SetStateAction<Message[]>>;
+  loading?: boolean;
+  setLoading: Dispatch<SetStateAction<boolean>>;
   addMessage: (message: string, type: Message["type"]) => string;
-  setLoading: (id: string, loading: boolean) => void;
 }
 
 const TerminalContext = createContext<TerminalContextType | undefined>(
@@ -20,34 +28,40 @@ const TerminalContext = createContext<TerminalContextType | undefined>(
 );
 
 export function TerminalProvider({ children }: { children: ReactNode }) {
-  const [messages, setMessages] = useState<Message[]>([
-    { id: "1", message: "Welcome to Terminal Chat UI", type: "system" },
-    {
-      id: "2",
-      message: "Type your message below and press Enter.",
-      type: "system",
-    },
-  ]);
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const addMessage = (message: string, type: Message["type"]) => {
+    setLoading(true);
+
     const newMessage = {
       id: Math.random().toString(36).substring(7),
       message,
       type,
-      loading: type === "user",
     };
+
     setMessages((prev) => [...prev, newMessage]);
+
+    setTimeout(() => {
+      setLoading(false);
+
+      const newMessage = {
+        id: Math.random().toString(36).substring(7),
+        message:
+          "⚠️ Connection to the server could not be established at the moment. Please try again later.",
+        type: "system" as Message["type"],
+      };
+
+      setMessages((prev) => [...prev, newMessage]);
+    }, 3000);
+
     return newMessage.id;
   };
 
-  const setLoading = (id: string, loading: boolean) => {
-    setMessages((prev) =>
-      prev.map((msg) => (msg.id === id ? { ...msg, loading } : msg))
-    );
-  };
-
   return (
-    <TerminalContext.Provider value={{ messages, addMessage, setLoading }}>
+    <TerminalContext.Provider
+      value={{ messages, addMessage, loading, setLoading, setMessages }}
+    >
       {children}
     </TerminalContext.Provider>
   );
