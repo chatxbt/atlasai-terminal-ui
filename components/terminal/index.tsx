@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { useTerminal } from "./provider";
 import { Loader } from "../ui/loader";
 import { UserInput } from "./changing-placeholder-input";
-import { useIsMounted, useTypewriter } from "@/lib/hooks";
+import { useTypewriter } from "@/lib/hooks";
 import { User } from "./user";
 
 export function Terminal() {
