@@ -27,7 +27,7 @@ export function Terminal() {
   const [show, setShow] = useState(false);
 
   const text =
-    "> <span class='text-black py-1 px-1 rounded-md bg-neutral-200 shadow-lg font-bold'>Atlas</span> is your gateway to the  <a href='https://chatxbt.com' class='underline text-blue-500'>ChatXBT Protocol</a> ecosystem \n \n> Turn your crypto documentation into powerful interactive tools. Customize, extend, and monetize your knowledge base with AI-powered experiences <a href='https://chatxbt.com' class='underline text-green-500'>Launch Your Shell</a> \n\n> Ask anything below.\n> (just type).";
+    "> <span class='text-black py-1 px-1 rounded-md bg-neutral-200 shadow-lg font-bold'>Atlas</span> is your shell to the  <a href='https://chatxbt.com' class='underline text-blue-500'>ChatXBT Protocol</a> ecosystem \n \n> Turn your crypto documentation into powerful interactive tools. Customize, extend, and monetize your knowledge base with AI-powered experiences <a href='https://app.deform.cc/form/6539b0d1-be4c-4c7d-844d-3201c16bf02a' class='underline text-green-500'>Launch Your Shell</a> \n\n> Ask anything below.\n> (just type).";
 
   const onboardMessage = useTypewriter(text, 15, () => {
     setTimeout(() => {
