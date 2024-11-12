@@ -35,7 +35,6 @@ export function Terminal() {
     }, 1500);
   });
 
-  if (!isMounted) return null;
   return (
     <div className="flex flex-col gap-10">
       <pre className="font-mono text-[0.4rem] sm:text-sm md:text-base whitespace-pre leading-none mb-4 text-orange-500 overflow-x-auto">
