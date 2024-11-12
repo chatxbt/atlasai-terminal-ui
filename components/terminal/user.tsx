@@ -1,8 +1,9 @@
+import { user } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 export const User = ({
-  username = "user",
-  domain = "atlasai",
+  username = user.username,
+  domain = user.domain,
   className,
 }: {
   username?: string;
@@ -10,10 +11,10 @@ export const User = ({
   className?: string;
 }) => {
   return (
-    <span className={cn(className)}>
+    <p className={cn(className)}>
       {username}
-      <span className="text-orange-500">@{domain}</span>: ~{" "}
+      <span className="text-orange-500">@{domain}</span>: ~&nbsp;
       <span className="text-green-500">$</span>
-    </span>
+    </p>
   );
 };
