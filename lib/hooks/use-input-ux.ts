@@ -1,5 +1,6 @@
-import { useTerminal } from "@/components/terminal/provider";
 import { ChangeEvent, KeyboardEvent, useEffect, useRef, useState } from "react";
+
+import { useTerminal } from "@/components/terminal/provider";
 
 export const useInputUX = () => {
   const { messages, addMessage, setMessages } = useTerminal();
@@ -9,7 +10,6 @@ export const useInputUX = () => {
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
   const formRef = useRef<HTMLFormElement | null>(null);
   const buttonRef = useRef<HTMLButtonElement | null>(null);
-  const bottomRef = useRef<HTMLDivElement>(null);
 
   const [message, setMessage] = useState("");
 
@@ -59,10 +59,6 @@ export const useInputUX = () => {
   }, [message]);
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
-
-  useEffect(() => {
     if (textareaRef && textareaRef.current) {
       const handleFocus = () => setIsFocused(true);
       const handleBlur = () => setIsFocused(false);
@@ -87,7 +83,6 @@ export const useInputUX = () => {
       buttonRef,
       message,
       isDisabled,
-      bottomRef,
       isFocused,
       messages,
     },

@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { useTerminal } from "./provider";
 import { Loader } from "../ui/loader";
 import { UserInput } from "./changing-placeholder-input";
-import { useTypewriter } from "@/lib/hooks";
+import { useIsMounted, useTypewriter } from "@/lib/hooks";
 import { User } from "./user";
 
 export function Terminal() {
@@ -22,7 +22,7 @@ export function Terminal() {
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+  }, [messages.length]);
 
   const [show, setShow] = useState(false);
 
@@ -35,6 +35,7 @@ export function Terminal() {
     }, 1500);
   });
 
+  if (!isMounted) return null;
   return (
     <div className="flex flex-col gap-10">
       <pre className="font-mono text-[0.4rem] sm:text-sm md:text-base whitespace-pre leading-none mb-4 text-orange-500 overflow-x-auto">
@@ -56,6 +57,7 @@ export function Terminal() {
           ))}
 
           {loading ? <Loader /> : <UserInput />}
+          <div ref={bottomRef} />
         </div>
       )}
     </div>
