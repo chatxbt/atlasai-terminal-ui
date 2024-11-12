@@ -11,6 +11,15 @@ export function Terminal() {
   const { messages, loading } = useTerminal();
   const bottomRef = useRef<HTMLDivElement>(null);
 
+  const asciiArt = `
+     █████╗ ████████╗██╗      █████╗ ███████╗    █████╗ ██╗
+    ██╔══██╗╚══██╔══╝██║     ██╔══██╗██╔════╝   ██╔══██╗██║
+    ███████║   ██║   ██║     ███████║███████╗   ███████║██║
+    ██╔══██║   ██║   ██║     ██╔══██║╚════██║   ██╔══██║██║
+    ██║  ██║   ██║   ███████╗██║  ██║███████║   ██║  ██║██║
+    ╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝  ╚═╝╚═╝
+  `;
+
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
@@ -18,7 +27,7 @@ export function Terminal() {
   const [show, setShow] = useState(false);
 
   const text =
-    "> AtlasAI is building the world's first AI Network Engineer.\n> We are a deeply technical team of alumni from Verizon, Nvidia, Google and Microsoft building AI agents for network operations teams.\n> Ask anything below.\n> (just type).";
+    "> <span class='text-black py-1 px-1 rounded-md bg-neutral-200 shadow-lg font-bold'>Atlas</span> is your gateway to the  <a href='https://chatxbt.com' class='underline text-blue-500'>ChatXBT Protocol</a> ecosystem \n \n> Turn your crypto documentation into powerful interactive tools. Customize, extend, and monetize your knowledge base with AI-powered experiences <a href='https://chatxbt.com' class='underline text-green-500'>Launch Your Shell</a> \n\n> Ask anything below.\n> (just type).";
 
   const onboardMessage = useTypewriter(text, 15, () => {
     setTimeout(() => {
@@ -27,10 +36,15 @@ export function Terminal() {
   });
 
   return (
-    <div className="flex flex-col gap-6">
-      <span className="whitespace-pre-line leading-normal block">
-        {onboardMessage}
-      </span>
+    <div className="flex flex-col gap-10">
+      <pre className="font-mono text-[0.4rem] sm:text-sm md:text-base whitespace-pre leading-none mb-4 text-orange-500 overflow-x-auto">
+        {asciiArt}
+      </pre>
+
+      <span
+        className="whitespace-pre-line leading-normal block sm:text-sm md:text-base font-mono font-medium"
+        dangerouslySetInnerHTML={{ __html: onboardMessage }}
+      />
 
       {show && (
         <div className="flex flex-col items-start gap-5">

@@ -1,9 +1,9 @@
 export const placeholders = [
-  "Chatxbt?",
+  "what is Chatxbt?",
   "who are the customers of Chatxbt?",
   "how does AtlasAI work?",
   "is my data secure with AtlasAI?",
   "show me something cool",
-  "team?",
-  "who are the customers of Chatxbt?",
+  "who is the founding team?",
+  "",
 ];
