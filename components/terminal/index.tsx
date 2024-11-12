@@ -6,19 +6,11 @@ import { Loader } from "../ui/loader";
 import { UserInput } from "./changing-placeholder-input";
 import { useTypewriter } from "@/lib/hooks";
 import { User } from "./user";
+import { asciiArt } from "@/lib/constants";
 
 export function Terminal() {
   const { messages, loading } = useTerminal();
   const bottomRef = useRef<HTMLDivElement>(null);
-
-  const asciiArt = `
-     █████╗ ████████╗██╗      █████╗ ███████╗    █████╗ ██╗
-    ██╔══██╗╚══██╔══╝██║     ██╔══██╗██╔════╝   ██╔══██╗██║
-    ███████║   ██║   ██║     ███████║███████╗   ███████║██║
-    ██╔══██║   ██║   ██║     ██╔══██║╚════██║   ██╔══██║██║
-    ██║  ██║   ██║   ███████╗██║  ██║███████║   ██║  ██║██║
-    ╚═╝  ╚═╝   ╚═╝   ╚══════╝╚═╝  ╚═╝╚══════╝   ╚═╝  ╚═╝╚═╝
-  `;
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -27,7 +19,7 @@ export function Terminal() {
   const [show, setShow] = useState(false);
 
   const text =
-    "> <span class='text-black py-1 px-1 rounded-md bg-neutral-200 shadow-lg font-bold'>Atlas</span> is your gateway to the  <a href='https://chatxbt.com' class='underline text-blue-500'>ChatXBT Protocol</a> ecosystem \n \n> Turn your crypto documentation into powerful interactive tools. Customize, extend, and monetize your knowledge base with AI-powered experiences <a href='https://chatxbt.com' class='underline text-green-500'>Launch Your Shell</a> \n\n> Ask anything below.\n> (just type).";
+    "> <span class='text-black py-1 px-2 rounded-md bg-neutral-200 shadow-lg font-bold'>Atlas</span> is your gateway to the  <a href='https://chatxbt.com' class='underline text-blue-500'>ChatXBT Protocol</a> ecosystem \n \n> Turn your crypto documentation into powerful interactive tools. Customize, extend, and monetize your knowledge base with AI-powered experiences <a href='https://chatxbt.com' class='underline text-green-500'>Launch Your Shell</a> \n\n> Ask anything below.\n> (just type).";
 
   const onboardMessage = useTypewriter(text, 15, () => {
     setTimeout(() => {
