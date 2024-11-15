@@ -1,5 +1,7 @@
 # Atlas UI 🚀
 
+<img width="1692" alt="Atlas UI Logo" src="https://github.com/user-attachments/assets/701a2c34-0c31-4e17-81d7-e4e5fa28a639">
+
 A public interface for running Atlas - an interactive documentation shell by ChatXBT. Atlas transforms your documentation into an interactive experience, making it easier for users to understand your product offering
 
 ## Features ✨
