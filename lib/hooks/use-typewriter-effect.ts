@@ -22,6 +22,7 @@ export const useTypewriter = (
     return () => {
       clearInterval(typingInterval);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [speed, string]);
 
   return displayString;
