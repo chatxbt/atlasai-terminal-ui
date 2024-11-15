@@ -58,7 +58,7 @@ export const useInputUX = () => {
       message.style.height = "auto";
     }
 
-    if (message.trim() === "clear") {
+    if (message.trim().toLowerCase() === "clear") {
       setMessages([]);
     } else {
       // Add user message

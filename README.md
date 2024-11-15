@@ -48,7 +48,7 @@ To get started with Atlas UI, you'll need an API key:
 
 ## Documentation 📚
 
-For detailed documentation, visit our [docs site](docs.chatxbt.com).
+For detailed documentation, visit our [docs site](docs.atlasai.io).
 
 ### Basic Implementation
 
