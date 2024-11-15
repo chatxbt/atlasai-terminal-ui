@@ -90,12 +90,6 @@ export const seoMetadata: Metadata = {
     },
   },
 
-  verification: {
-    google: "your-google-site-verification",
-    yandex: "your-yandex-verification",
-    me: ["support@chatxbt.com"],
-  },
-
   alternates: {
     canonical: "https://atlasai.io",
     languages: {
