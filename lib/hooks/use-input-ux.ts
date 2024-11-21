@@ -22,6 +22,15 @@ export const useInputUX = () => {
     if (e.key === "Enter") {
       e.preventDefault();
 
+      if (message.trim().toLowerCase() === "clear") {
+        setMessages([]);
+        setMessage("");
+        if (textareaRef.current) {
+          textareaRef.current.value = label;
+        }
+        return;
+      }
+
       if (!message.trim()) {
         setMessages((prev) => [
           ...prev,
