@@ -21,7 +21,51 @@ export const useInputUX = () => {
   const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter") {
       e.preventDefault();
+
+      if (message.trim().toLowerCase() === "clear") {
+        setMessages([]);
+        setMessage("");
+        if (textareaRef.current) {
+          textareaRef.current.value = label;
+        }
+        return;
+      }
+
+      if (!message.trim()) {
+        setMessages((prev) => [
+          ...prev,
+          {
+            id: Math.random().toString(36).substring(7),
+            message: "",
+            type: "user",
+          },
+        ]);
+        if (textareaRef.current) {
+          textareaRef.current.value = label;
+        }
+        return;
+      }
+
       handleSubmit();
+    }
+    
+    if ((e.ctrlKey || e.metaKey) && e.key === "a") {
+      e.preventDefault();
+      const start = label.length;
+      if (textareaRef.current) {
+        textareaRef.current.setSelectionRange(
+          start,
+          textareaRef.current.value.length
+        );
+      }
+    }
+
+    if (
+      (e.key === "Delete" || e.key === "Backspace") &&
+      textareaRef.current?.selectionStart === label.length &&
+      textareaRef.current?.selectionEnd === label.length
+    ) {
+      e.preventDefault();
     }
   };
 
