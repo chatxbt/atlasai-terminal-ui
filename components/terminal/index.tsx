@@ -30,30 +30,30 @@ export function Terminal() {
 
   useEffect(() => {
     const handleAnywhereClick = () => {
-      const textarea = terminalRef.current?.querySelector('textarea');
+      const textarea = terminalRef.current?.querySelector("textarea");
       if (textarea) {
         textarea.focus();
       }
     };
 
     const handleAnywherePress = (e: KeyboardEvent) => {
-      const textarea = terminalRef.current?.querySelector('textarea');
+      const textarea = terminalRef.current?.querySelector("textarea");
       if (textarea && e.target === document.body) {
         textarea.focus();
         if (e.key.length === 1) {
           textarea.value += e.key;
-          const event = new Event('input', { bubbles: true });
+          const event = new Event("input", { bubbles: true });
           textarea.dispatchEvent(event);
         }
       }
     };
 
-    document.addEventListener('click', handleAnywhereClick);
-    document.addEventListener('keypress', handleAnywherePress);
+    document.addEventListener("click", handleAnywhereClick);
+    document.addEventListener("keypress", handleAnywherePress);
 
     return () => {
-      document.removeEventListener('click', handleAnywhereClick);
-      document.removeEventListener('keypress', handleAnywherePress);
+      document.removeEventListener("click", handleAnywhereClick);
+      document.removeEventListener("keypress", handleAnywherePress);
     };
   }, []);
 

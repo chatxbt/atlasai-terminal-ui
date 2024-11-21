@@ -23,6 +23,25 @@ export const useInputUX = () => {
       e.preventDefault();
       handleSubmit();
     }
+    
+    if ((e.ctrlKey || e.metaKey) && e.key === "a") {
+      e.preventDefault();
+      const start = label.length;
+      if (textareaRef.current) {
+        textareaRef.current.setSelectionRange(
+          start,
+          textareaRef.current.value.length
+        );
+      }
+    }
+
+    if (
+      (e.key === "Delete" || e.key === "Backspace") &&
+      textareaRef.current?.selectionStart === label.length &&
+      textareaRef.current?.selectionEnd === label.length
+    ) {
+      e.preventDefault();
+    }
   };
 
   const handleChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
