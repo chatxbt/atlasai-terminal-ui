@@ -11,6 +11,7 @@ import { asciiArt } from "@/lib/constants";
 export function Terminal() {
   const { messages, loading } = useTerminal();
   const bottomRef = useRef<HTMLDivElement>(null);
+  const terminalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -27,8 +28,37 @@ export function Terminal() {
     }, 1500);
   });
 
+  useEffect(() => {
+    const handleAnywhereClick = () => {
+      const textarea = terminalRef.current?.querySelector('textarea');
+      if (textarea) {
+        textarea.focus();
+      }
+    };
+
+    const handleAnywherePress = (e: KeyboardEvent) => {
+      const textarea = terminalRef.current?.querySelector('textarea');
+      if (textarea && e.target === document.body) {
+        textarea.focus();
+        if (e.key.length === 1) {
+          textarea.value += e.key;
+          const event = new Event('input', { bubbles: true });
+          textarea.dispatchEvent(event);
+        }
+      }
+    };
+
+    document.addEventListener('click', handleAnywhereClick);
+    document.addEventListener('keypress', handleAnywherePress);
+
+    return () => {
+      document.removeEventListener('click', handleAnywhereClick);
+      document.removeEventListener('keypress', handleAnywherePress);
+    };
+  }, []);
+
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-10" ref={terminalRef}>
       <pre className="font-mono text-[0.4rem] sm:text-sm md:text-base whitespace-pre leading-none mb-4 text-orange-500 overflow-x-auto">
         {asciiArt}
       </pre>
