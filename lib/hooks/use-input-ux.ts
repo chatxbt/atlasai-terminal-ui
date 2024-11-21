@@ -21,6 +21,22 @@ export const useInputUX = () => {
   const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter") {
       e.preventDefault();
+
+      if (!message.trim()) {
+        setMessages((prev) => [
+          ...prev,
+          {
+            id: Math.random().toString(36).substring(7),
+            message: "",
+            type: "user",
+          },
+        ]);
+        if (textareaRef.current) {
+          textareaRef.current.value = label;
+        }
+        return;
+      }
+
       handleSubmit();
     }
     
