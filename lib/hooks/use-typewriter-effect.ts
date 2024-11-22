@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 
 export const useTypewriter = (
   string: string = "",
-  speed = 5,
+  speed = 50,
   onComplete?: () => void
 ) => {
   const [displayString, setDisplayString] = useState("");
 
   useEffect(() => {
     let i = 0;
-    const charactersPerTick = 4;
+    const charactersPerTick = 2;
 
     const typingInterval = setInterval(() => {
       if (i < string.length) {

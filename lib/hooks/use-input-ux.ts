@@ -22,15 +22,6 @@ export const useInputUX = () => {
     if (e.key === "Enter") {
       e.preventDefault();
 
-      if (message.trim().toLowerCase() === "clear") {
-        setMessages([]);
-        setMessage("");
-        if (textareaRef.current) {
-          textareaRef.current.value = label;
-        }
-        return;
-      }
-
       if (!message.trim()) {
         setMessages((prev) => [
           ...prev,
@@ -48,7 +39,7 @@ export const useInputUX = () => {
 
       handleSubmit();
     }
-    
+
     if ((e.ctrlKey || e.metaKey) && e.key === "a") {
       e.preventDefault();
       const start = label.length;
