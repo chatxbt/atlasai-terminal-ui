@@ -9,7 +9,7 @@ import { User } from "./user";
 import { asciiArt } from "@/lib/constants";
 
 export function Terminal() {
-  const { messages, loading } = useTerminal();
+  const { messages, loading, initializing } = useTerminal();
   const bottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -26,6 +26,15 @@ export function Terminal() {
       setShow(true);
     }, 1500);
   });
+
+  if (initializing)
+    return (
+      <div className="">
+        <pre className="font-mono text-[0.4rem] sm:text-sm md:text-base whitespace-pre leading-none mb-4 text-orange-500 overflow-x-auto">
+          {asciiArt}
+        </pre>
+      </div>
+    );
 
   return (
     <div className="flex flex-col gap-10">

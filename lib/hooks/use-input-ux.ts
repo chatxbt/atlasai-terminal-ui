@@ -2,6 +2,7 @@ import { ChangeEvent, KeyboardEvent, useEffect, useRef, useState } from "react";
 
 import { useTerminal } from "@/components/terminal/provider";
 import { user } from "../constants";
+import { generateRandomString } from "../utils";
 
 export const useInputUX = () => {
   const { messages, addMessage, setMessages } = useTerminal();
@@ -26,7 +27,7 @@ export const useInputUX = () => {
         setMessages((prev) => [
           ...prev,
           {
-            id: Math.random().toString(36).substring(7),
+            id: generateRandomString(),
             message: "",
             type: "user",
           },
